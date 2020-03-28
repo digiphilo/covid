@@ -72,7 +72,7 @@ def process_state_county(data, state_filter, county_filter, mode_filter):
 def process_county_data(data, county_filter, mode_filter):
     dataset = {}
     for row in data:
-        if row[1].replace(' ','').lower().capitalize() == county_filter.replace(' ','').lower().capitalize():
+        if str_normalize(row[1]) == str_normalize(county_filter):
             dataset[row[0]] = process_mode_county(row, mode_filter)
             if mode_filter == 'cases':
                 dataset[row[0]] = row[4]
@@ -95,14 +95,12 @@ def process_country_county(data, mode_filter):
     for row in data:
         if row[2] not in dataset:
             dataset[row[2]] = {}
-        print(row)
         if row[1] not in dataset[row[2]]:
             dataset[row[2]][row[1]] = {}
         dataset[row[2]][row[1]][row[0]] = process_mode_county(row, mode_filter)
     return dataset
 
 def process_mode_state(row, mode_filter):
-    print(row)
     if mode_filter == 'cases':
         return int(row[3])
     elif mode_filter == 'deaths':
@@ -121,9 +119,7 @@ def process_mode_county(row, mode_filter):
 def filter_state(data, state_filter):
     result = []
     for row in data:
-        print(state_filter.replace(' ','').lower().capitalize())
-        print(row[2])
-        if row[2].replace(' ','').lower().capitalize() == state_filter.replace(' ','').lower().capitalize():
+        if str_normalize(row[2]) == str_normalize(state_filter):
             result.append(row)
     return result
 
