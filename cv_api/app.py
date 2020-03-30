@@ -77,9 +77,8 @@ def state_view_total(data, state_filter, args):
 
 def state_view(data, state_filter, args):
     result = {}
-    key_row = get_key_row(args, 'country')
     data = filter_country_state(data, state_filter)
-    for row in data: result[row[key_row]] = process_mode(args, row[3], row[4])
+    for row in data: result[row[0]] = process_mode(args, row[3], row[4])
     return result
 
 def country_view_total(data, args):
