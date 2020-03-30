@@ -147,9 +147,9 @@ def process_counties_total(data, args):
     dataset = {}
     key_row = get_key_row(args, 'state')
     for row in reversed(data):
-        if row[key_row] not in dataset: dataset[row[key_row]] = {}
-        if row[1] not in dataset[row[2]]:
-            dataset[row[2]][row[1]] = process_mode(args, row[4], row[5])
+        if row[2] not in dataset: dataset[row[2]] = {}
+        if row[key_row] not in dataset[row[2]]:
+            dataset[row[2]][row[key_row]] = process_mode(args, row[4], row[5])
     return dataset
 
 def process_country_county(data, args):
