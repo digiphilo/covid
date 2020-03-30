@@ -7,5 +7,5 @@ COPY app.py /app/app.py
 COPY start.sh /app/start.sh
 COPY templates /app/templates
 WORKDIR /app
-RUN pip3 install flask
+RUN pip3 install flask us
 CMD ./start.sh
