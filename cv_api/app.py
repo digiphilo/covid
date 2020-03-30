@@ -169,7 +169,6 @@ def process_mode(args, cases, deaths):
     elif args['mode'] == 'deaths': return int(deaths)
     else: return {'cases': cases, 'deaths': deaths}
 
-#combine with below with num arg
 def filter_state(data, state_filter):
     result = []
     for row in data:
@@ -219,7 +218,6 @@ def compare_state(state_filter, entry):
 def compare_county(county_filter, entry, fips_entry):
     if str_normalize(entry) == str_normalize(county_filter):
         return True
-    #test conditional
     if county_filter == fips_entry:
         return True
     return False
